@@ -6,8 +6,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class EksamenTestCykelApplicationTests {
 
-    /*@Test
-    void contextLoads() {
-    }
-*/
+    //two tests
+
+    //arrange
+
+    //act
+
+    //assert
 }
