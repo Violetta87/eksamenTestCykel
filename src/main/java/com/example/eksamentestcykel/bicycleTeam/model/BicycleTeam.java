@@ -17,14 +17,18 @@ public class BicycleTeam {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "team_name")
+    @Column(name = "team_name", nullable=true)
     private String bicycleTeamName;
 
-
-    @OneToMany(mappedBy = "bicycleTeam", cascade = {CascadeType.ALL})
-    @JsonManagedReference //tager listen med.
+    //hvis data er relateret til hinanden - kan vi definere de forskellige
+    @OneToMany(mappedBy = "bicycleTeam")
+    //@JsonManagedReference //tager listen med.
     private List<BicycleRider> bicycleRiders;
 
+    public BicycleTeam(String bicycleTeamName) {
+        this.bicycleTeamName = bicycleTeamName;
+    }
 }

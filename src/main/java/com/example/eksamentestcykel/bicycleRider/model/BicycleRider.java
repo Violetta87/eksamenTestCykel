@@ -1,8 +1,6 @@
 package com.example.eksamentestcykel.bicycleRider.model;
 
 import com.example.eksamentestcykel.bicycleTeam.model.BicycleTeam;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -18,26 +16,28 @@ public class BicycleRider {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "bicycle_rider_name")
+    @Column(name = "bicycle_rider_name", nullable = true)
     private String name;
-    @Column(name = "bicycle_rider_age")
+    @Column(name = "bicycle_rider_age",nullable = true)
     private int age;
-    @Column(name = "total_time")
+    @Column(name = "total_time", nullable = true)
     private double totalTime;
-    @Column(name = "mountain_points")
+    @Column(name = "mountain_points",nullable = true)
     private double mountainPoints;
-    @Column(name = "fast_points")
+    @Column(name = "fast_points", nullable = true)
     private double fastPoints;
 
 
-
-    @JsonManagedReference
-    @ManyToOne()
-    @JoinColumn(name = "team_id", nullable = false)
+    @JoinColumn(name = "team_name", nullable = false)
+    @ManyToOne
     private BicycleTeam bicycleTeam;
 
-
-
-
-
+    public BicycleRider(String name, int age, double totalTime, double mountainPoints, double fastPoints, BicycleTeam bicycleTeam) {
+        this.name = name;
+        this.age = age;
+        this.totalTime = totalTime;
+        this.mountainPoints = mountainPoints;
+        this.fastPoints = fastPoints;
+        this.bicycleTeam = bicycleTeam;
+    }
 }
