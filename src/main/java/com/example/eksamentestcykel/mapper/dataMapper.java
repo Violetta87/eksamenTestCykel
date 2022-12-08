@@ -24,23 +24,24 @@ public class dataMapper implements CommandLineRunner {
         //testdata
 
         //BicycleTeam
-
-        ArrayList<BicycleTeam> teamlist = new ArrayList<>();
-
         BicycleTeam teamOne = new BicycleTeam();
         teamOne.setBicycleTeamName("yellow");
+        teamOne.setManager("Lars Hansen");
         bicycleTeamRepo.save(teamOne);
 
         BicycleTeam teamTwo = new BicycleTeam();
         teamTwo.setBicycleTeamName("purple");
+        teamTwo.setManager("fia nini");
         bicycleTeamRepo.save(teamTwo);
 
         BicycleTeam teamThree = new BicycleTeam();
         teamThree.setBicycleTeamName("green");
+        teamThree.setManager("theis Løvgreen");
         bicycleTeamRepo.save(teamThree);
 
         BicycleTeam teamFour = new BicycleTeam();
         teamFour.setBicycleTeamName("red");
+        teamFour.setManager("tu tu ");
         bicycleTeamRepo.save(teamFour);
 
         //BicycleRiders
@@ -52,30 +53,30 @@ public class dataMapper implements CommandLineRunner {
         riderOne.setBicycleTeam(teamOne);
         bicycleRiderRepo.save(riderOne);
 
+
         BicycleRider riderTwo = new BicycleRider();
-        riderOne.setName("Tom");
-        riderOne.setAge(27);
-        riderOne.setMountainPoints(120);
-        riderOne.setFastPoints(22);
-        riderOne.setBicycleTeam(teamTwo);
+        riderTwo.setName("Tom");
+        riderTwo.setAge(27);
+        riderTwo.setMountainPoints(120);
+        riderTwo.setFastPoints(22);
+        riderTwo.setBicycleTeam(teamTwo);
         bicycleRiderRepo.save(riderTwo);
 
         BicycleRider riderThree = new BicycleRider();
-        riderOne.setName("Lars");
-        riderOne.setAge(31);
-        riderOne.setMountainPoints(130);
-        riderOne.setFastPoints(20);
-        riderOne.setBicycleTeam(teamThree);
+        riderThree.setName("Lars");
+        riderThree.setAge(31);
+        riderThree.setMountainPoints(130);
+        riderThree.setFastPoints(20);
+        riderThree.setBicycleTeam(teamThree);
         bicycleRiderRepo.save(riderThree);
 
         BicycleRider riderFour = new BicycleRider();
-        riderOne.setName("Nissen");
-        riderOne.setAge(35);
-        riderOne.setMountainPoints(150);
-        riderOne.setFastPoints(7);
-        riderOne.setBicycleTeam(teamFour);
+        riderFour.setName("Nissen");
+        riderFour.setAge(35);
+        riderFour.setMountainPoints(150);
+        riderFour.setFastPoints(7);
+        riderFour.setBicycleTeam(teamFour);
         bicycleRiderRepo.save(riderFour);
-
 
     }
 }

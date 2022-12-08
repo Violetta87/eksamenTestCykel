@@ -7,4 +7,5 @@ public interface BicycleTeamRepository extends JpaRepository<BicycleTeam, Long> 
 
 
 
+
 }

@@ -17,18 +17,24 @@ public class BicycleTeam {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "team_id", nullable = false)
     private Long id;
 
-    @Column(name = "team_name", nullable=true)
+    @Column(name = "team_name", nullable = false)
     private String bicycleTeamName;
+
+    @Column(name = "manager", nullable = false)
+    private String manager;
 
     //hvis data er relateret til hinanden - kan vi definere de forskellige
     @OneToMany(mappedBy = "bicycleTeam")
-    //@JsonManagedReference //tager listen med.
+    //der er en tilbage reference til noget, og ved at sætte annotationen @JsonBackreference
+    //fortæller spring frameworket at
+    @JsonBackReference
     private List<BicycleRider> bicycleRiders;
 
-    public BicycleTeam(String bicycleTeamName) {
+    public BicycleTeam(String bicycleTeamName, String manager) {
         this.bicycleTeamName = bicycleTeamName;
+        this.manager = manager;
     }
 }

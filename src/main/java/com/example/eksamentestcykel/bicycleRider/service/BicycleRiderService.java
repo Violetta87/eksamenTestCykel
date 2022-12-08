@@ -1,47 +1,54 @@
 package com.example.eksamentestcykel.bicycleRider.service;
 
+import com.example.eksamentestcykel.bicycleRider.DTO.BicycleRiderDTO;
 import com.example.eksamentestcykel.bicycleRider.model.BicycleRider;
 import com.example.eksamentestcykel.bicycleRider.repository.BicycleRiderRepository;
 import org.springframework.stereotype.Service;
-
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BicycleRiderService {
 
-    BicycleRiderRepository repository;
+    private BicycleRiderRepository repository;
 
     public BicycleRiderService(BicycleRiderRepository repository) {
         this.repository = repository;
     }
 
-    //create metode, vi kalder metoden fra JPArepository
+    /
     public BicycleRider create(BicycleRider bicycleRider) {
         return repository.save(bicycleRider);
     }
 
-    //metode returnere en optional bicyclerider som vi finder via id.
     public Optional<BicycleRider> get(long id) {
         return repository.findById(id);
     }
 
-    //update
-    //vi vil gerne returner en bicyclerider
-    public BicycleRider update(BicycleRider bicycleRider) {
-        return repository.save(bicycleRider);
+
+    public List<BicycleRider> findALl(){
+        return repository.findAll();
     }
 
-    //slette
+    public BicycleRider update(BicycleRider bicycleRider) {
+        Optional<BicycleRider> optionalBicycleRider = get(bicycleRider.getId());
+        if(optionalBicycleRider.isEmpty()){
+            return null;
+        }else{
+            return repository.save(optionalBicycleRider.get());
+        }
+
+    }
+
     public boolean delete(long id){
         //vi returnerer en boolean
         // Først skal vi have fat i en bicycle rider
         //bruger en optional til at håndtere om der findes noget.
-
         Optional<BicycleRider> optionalBicycleRider = get(id);
 
-        //if statement der checker om der eksisterer noget,hvis ja skal der kaldes delete funtionen.
-        //ellers returneres false.
+        //Hvis der eksisterer en bicyclerider slettes den, og returneres true.
 
         if(optionalBicycleRider.isPresent()){
             repository.delete(optionalBicycleRider.get());
@@ -51,11 +58,15 @@ public class BicycleRiderService {
         }
 
     }
+    public static List<BicycleRiderDTO> of(List<BicycleRider> entities) {
+        return entities.stream()
+                .sorted(Comparator.comparing(BicycleRider::getTotalTime))
+                .map(BicycleRiderDTO::of).collect(Collectors.toList());
 
-    //returnere en liste med alle bicycleriders.
-    public List<BicycleRider> findALlBicycleriders(){
-        return repository.findAll();
     }
+
+
+
 
 
 }
